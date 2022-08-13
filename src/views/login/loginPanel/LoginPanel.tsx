@@ -1,6 +1,5 @@
-import { PanelContainer, CustomInput } from "./LoginPanel.styles";
+import { PanelContainer, CustomInput, LabelText } from "./LoginPanel.styles";
 import { FC } from "react";
-import { useLogin } from "../hooks/useLogin";
 
 type LoginCredentials = {
   userName: string;
@@ -15,12 +14,14 @@ const LoginPanel: FC<LoginCredentials> = ({
 }) => {
   return (
     <PanelContainer>
+      <LabelText>User Name</LabelText>
       <CustomInput
         type="text"
         value={userName}
         name="userName"
         onChange={handleCredentialValueChange}
       />
+      <LabelText>Password</LabelText>
       <CustomInput
         type="password"
         name="password"

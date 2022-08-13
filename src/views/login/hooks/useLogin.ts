@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 import { userService } from "../../../../service/user.service";
-import { CreateUser } from "../../../../types/user.types";
 
 type LoginDisplay = "Login" | "Sign up" | "default";
 
@@ -14,6 +13,8 @@ export const useLogin = () => {
 
   const onLoginClick = () => setDisplay("Login");
   const onSignUpClick = () => setDisplay("Sign up");
+  const onReturn = () => setDisplay("default");
+
   const handleCredentialValueChange = (e: React.SyntheticEvent) => {
     const target = e.target as HTMLInputElement;
     setCredentials({ ...credentials, [target.name]: target.value });
@@ -26,6 +27,10 @@ export const useLogin = () => {
   const submitRegistration = () => {
     userService.register(credentials);
   };
+
+  const handleAuthenticate = () => {
+    userService.authenticate({ userName: "Rakeem", password: "Future" });
+  };
   return {
     onLoginClick,
     onSignUpClick,
@@ -37,5 +42,7 @@ export const useLogin = () => {
     showLogin,
     submitRegistration,
     showSignUp,
+    handleAuthenticate,
+    onReturn,
   };
 };

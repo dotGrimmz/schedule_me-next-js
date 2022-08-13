@@ -17,10 +17,11 @@ const Login = () => {
     onLoginClick,
     onSignUpClick,
     showDefault,
-    display,
     showLogin,
     showSignUp,
     submitRegistration,
+    handleAuthenticate,
+    onReturn,
   } = useLogin();
   return (
     <LoginContainer>
@@ -35,7 +36,7 @@ const Login = () => {
           />
         </ScheduleImgContainer>
       )}
-      {showLogin && (
+      {(showLogin || showSignUp) && (
         <LoginPanel
           userName={credentials.userName}
           password={credentials.password}
@@ -49,8 +50,19 @@ const Login = () => {
             <CustomLoginBtn onClick={onSignUpClick}>Sign Up</CustomLoginBtn>
           </>
         )}
+        {showSignUp && (
+          <>
+            <CustomLoginBtn onClick={onReturn}>Return</CustomLoginBtn>
+            <CustomLoginBtn onClick={submitRegistration}>
+              Register
+            </CustomLoginBtn>
+          </>
+        )}
         {showLogin && (
-          <CustomLoginBtn onClick={submitRegistration}>Register</CustomLoginBtn>
+          <>
+            <CustomLoginBtn onClick={onReturn}>Return</CustomLoginBtn>
+            <CustomLoginBtn onClick={handleAuthenticate}>Login</CustomLoginBtn>
+          </>
         )}
       </CredentialsContainer>
     </LoginContainer>
