@@ -7,10 +7,10 @@ export default function authenticate(
 ) {
   const { userName, password } = req.body;
   const user = usersRepo.findByUserName(userName);
-
+  console.log(password);
   if (password !== user?.password) {
     return res.status(400).send({ message: "Incorrect Password" });
+  } else {
+    return res.status(200).send(user);
   }
-
-  return res.status(200).send(user);
 }

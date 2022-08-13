@@ -1,10 +1,12 @@
 import { useState } from "react";
 
 import { userService } from "../../../../service/user.service";
+import { useAuthContext } from "../../../context/useAuthContext";
 
 type LoginDisplay = "Login" | "Sign up" | "default";
 
 export const useLogin = () => {
+  const { login, auth } = useAuthContext();
   const [credentials, setCredentials] = useState({
     userName: "",
     password: "",
@@ -29,7 +31,7 @@ export const useLogin = () => {
   };
 
   const handleAuthenticate = () => {
-    userService.authenticate({ userName: "Rakeem", password: "Future" });
+    login(credentials.userName, credentials.password);
   };
   return {
     onLoginClick,
