@@ -6,7 +6,7 @@ import { useAuthContext } from "../../../context/useAuthContext";
 type LoginDisplay = "Login" | "Sign up" | "default";
 
 export const useLogin = () => {
-  const { login, auth } = useAuthContext();
+  const { login } = useAuthContext();
   const [credentials, setCredentials] = useState({
     userName: "",
     password: "",
