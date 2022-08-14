@@ -6,7 +6,10 @@ import Icon from "../../assets/calender.jpeg";
 import { Maybe } from "../../../types/utility.types";
 import { StyledButton } from "../../../styles/global.styles";
 
-const Profile: FC<{ credentials: Maybe<User> }> = ({ credentials }) => {
+const Profile: FC<{
+  credentials: Maybe<User>;
+  toggleAvailability: () => void;
+}> = ({ credentials, toggleAvailability }) => {
   return (
     <ProfileContainer>
       <Image
@@ -17,7 +20,9 @@ const Profile: FC<{ credentials: Maybe<User> }> = ({ credentials }) => {
       />
       <AvailabilityContainer>
         <div>{credentials?.userName}</div>
-        <StyledButton>Show Availability</StyledButton>
+        <StyledButton onClick={toggleAvailability}>
+          Show Availability
+        </StyledButton>
       </AvailabilityContainer>
     </ProfileContainer>
   );

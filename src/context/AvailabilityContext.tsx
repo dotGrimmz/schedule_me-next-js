@@ -43,8 +43,6 @@ export const AvailabilityContextProvider: FC<{ children: React.ReactNode }> = ({
     [userAvailabilityPeriods]
   );
 
-  console.log({ userAvailabilityPeriods });
-
   return (
     <AvailabilityContext.Provider value={context}>
       {children}

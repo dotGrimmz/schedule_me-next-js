@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const ProfileContainer = styled.div`
   display: flex;
-  outline: 1px solid red;
-  min-width: 120px;
+  outline: 1.5px solid black;
+  width: 200px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.19);
   background-color: white;
   align-self: flex-start;
