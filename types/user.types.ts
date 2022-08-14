@@ -9,6 +9,6 @@ export type User = {
 export type CreateUser = Omit<User, "id">;
 
 export type UserAvailablePeriods = {
-  user: User;
+  id: User["id"];
   availablePeriods: AvailabilityPeriod[];
 };

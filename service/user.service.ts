@@ -1,10 +1,11 @@
 import { CreateUser } from "../types/user.types";
 
-let requestOpts = {
+const requestOpts = {
   method: "POST",
   headers: { "Content-Type": "application/json" },
 };
 export const userService = {
+  //TODO: make this handle response and headers into a wrapper component
   handleResponse: (res: any) => {
     return res.text().then((text: string) => {
       const data = JSON.parse(text);

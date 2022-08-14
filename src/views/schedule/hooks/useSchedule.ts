@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Availability } from "../../../../types/availability.types";
 import { useAuthContext } from "../../../context/useAuthContext";
 import { getTransformedAvailability } from "../../../utils/getTransformedAvailability";
+import { periodService } from "../../../../service/period.service";
 
 export const useSchedule = () => {
   const { auth } = useAuthContext();
@@ -37,15 +38,18 @@ export const useSchedule = () => {
       selectedDay,
       availability,
     });
+
     const data = {
-      auth,
+      id: auth?.id,
+      availablePeriod: availabilityPeriod,
     };
+
+    periodService.create(data);
   };
 
   return {
     selectedDay,
     handleModalOpen,
-
     openModal,
     handleModalClose,
     continueStep,

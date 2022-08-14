@@ -1,0 +1,25 @@
+[
+    {
+        "id": "e960a17c-7a47-4f01-ab71-3661b995a8f7",
+        "availablePeriods": [
+            {
+                "day": "",
+                "date": "",
+                "start": "",
+                "end": ""
+            },
+            {
+                "day": "Wednesday",
+                "date": "08/24/2022",
+                "start": "9",
+                "end": "10"
+            },
+            {
+                "day": "Thursday",
+                "date": "08/25/2022",
+                "start": "9",
+                "end": "10"
+            }
+        ]
+    }
+]
