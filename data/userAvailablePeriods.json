@@ -1,0 +1,17 @@
+[
+  {
+    "user": {
+      "id": "00000",
+      "userName": "Jus Grimmz",
+      "password": "asdf"
+    },
+    "availablePeriods": [
+      {
+        "day": "",
+        "date": "",
+        "start": "",
+        "end": ""
+      }
+    ]
+  }
+]

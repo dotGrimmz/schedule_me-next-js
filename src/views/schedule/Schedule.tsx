@@ -7,16 +7,13 @@ import CustomModal from "../../components/modal/CustomModal";
 const Schedule = () => {
   const {
     selectedDay,
-    setAvailability,
-    availability,
     handleModalOpen,
-    handleEndTime,
     openModal,
     handleModalClose,
-    handleStartTime,
     continueStep,
     handleNextStep,
     handleBackStep,
+    captureAvailablePeriod,
   } = useSchedule();
   return (
     <ScheduleContainer>
@@ -27,12 +24,10 @@ const Schedule = () => {
       <CustomModal
         open={openModal}
         handleModalClose={handleModalClose}
-        availability={availability}
-        handleStartTime={handleStartTime}
-        handleEndTime={handleEndTime}
         handleBackStep={handleBackStep}
         handleNextStep={handleNextStep}
         continueStep={continueStep}
+        captureAvailablePeriod={captureAvailablePeriod}
       />
     </ScheduleContainer>
   );

@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC } from "react";
 import Fade from "@mui/material/Fade";
 import TimeSelect from "../timeSelect/TimeSelect";
 import {
@@ -7,38 +7,33 @@ import {
   TimeSelectContainer,
 } from "./CustomModal.styles";
 import { Availability } from "../../../types/availability.types";
-import { getMockHours } from "../../utils/getMockHours";
 import { StyledButton } from "../../../styles/global.styles";
-import { getEndTimeOptions } from "../../utils/getEndTimeOptions";
+import { useModal } from "./hooks/useModal";
 
 type CustomModal = {
   open: boolean;
   handleModalClose: () => void;
-  availability: Availability;
-  handleStartTime: (e: React.SyntheticEvent) => void;
-  handleEndTime: (e: React.SyntheticEvent) => void;
   continueStep?: boolean;
   handleNextStep: () => void;
   handleBackStep: () => void;
+  captureAvailablePeriod: (val: Availability) => void;
 };
 
 const CustomModal: FC<CustomModal> = ({
   open,
   handleModalClose,
-  availability,
-  handleStartTime,
   continueStep,
-  handleEndTime,
   handleNextStep,
   handleBackStep,
+  captureAvailablePeriod,
 }) => {
-  const mockHours = getMockHours();
-  const [endHours, setEndHours] = useState([""]);
+  const { endHours, mockHours, availability, handleSelectedTime } = useModal();
 
-  useEffect(() => {
-    const endOpts = getEndTimeOptions(mockHours, availability.start);
-    setEndHours(endOpts);
-  }, [availability]);
+  const onSubmit = (e: React.SyntheticEvent) => {
+    handleSelectedTime(e);
+    captureAvailablePeriod(availability);
+    handleModalClose();
+  };
   return (
     <StyledModal open={open} onClose={handleModalClose}>
       <Fade in={open}>
@@ -48,7 +43,7 @@ const CustomModal: FC<CustomModal> = ({
               <TimeSelectContainer gap>
                 <TimeSelect
                   label="Start"
-                  onSelect={handleStartTime}
+                  onSelect={handleSelectedTime}
                   selectedTime={availability.start}
                   selectOptions={mockHours}
                 />
@@ -61,13 +56,11 @@ const CustomModal: FC<CustomModal> = ({
               <TimeSelectContainer gap>
                 <TimeSelect
                   label="End"
-                  onSelect={handleEndTime}
+                  onSelect={handleSelectedTime}
                   selectedTime={availability.end}
                   selectOptions={endHours}
                 />
-                <StyledButton onClick={() => console.log("almost done")}>
-                  Confirm
-                </StyledButton>
+                <StyledButton onClick={onSubmit}>Confirm</StyledButton>
                 <StyledButton onClick={handleBackStep}>Back</StyledButton>
               </TimeSelectContainer>
             </Fade>
