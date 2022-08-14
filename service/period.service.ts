@@ -1,5 +1,6 @@
 import { CreateAvailabilityPeriod } from "../types/availability.types";
 import { UserAvailablePeriods } from "../types/user.types";
+import { handleResponse } from "../helpers/utils/handleResponse";
 
 const requestOpts = {
   method: "POST",
@@ -7,14 +8,6 @@ const requestOpts = {
 };
 
 export const periodService = {
-  handleResponse: (res: any) => {
-    return res.text().then((text: string) => {
-      console.log({ text });
-      const data = JSON.parse(text);
-      return data;
-    });
-  },
-
   create: (period: CreateAvailabilityPeriod): Promise<UserAvailablePeriods> => {
     const opts = {
       ...requestOpts,
@@ -23,7 +16,7 @@ export const periodService = {
     const res = fetch(
       "http://localhost:3000/api/availablePeriods/createAvailablePeriod",
       opts
-    ).then(periodService.handleResponse);
+    ).then(handleResponse);
     return res;
   },
 };

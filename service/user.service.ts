@@ -1,17 +1,11 @@
 import { CreateUser, User } from "../types/user.types";
+import { handleResponse } from "../helpers/utils/handleResponse";
 
 const requestOpts = {
   method: "POST",
   headers: { "Content-Type": "application/json" },
 };
 export const userService = {
-  //TODO: make this handle response and headers into a wrapper component
-  handleResponse: (res: any) => {
-    return res.text().then((text: string) => {
-      const data = JSON.parse(text);
-      return data;
-    });
-  },
   register: (user: CreateUser): Promise<User> => {
     const opts = {
       ...requestOpts,
@@ -19,7 +13,7 @@ export const userService = {
     };
 
     const res = fetch("http://localhost:3000/api/users/register", opts).then(
-      userService.handleResponse
+      handleResponse
     );
     return res;
   },
@@ -32,8 +26,7 @@ export const userService = {
     const res = fetch(
       "http://localhost:3000/api/users/authenticate",
       opts
-    ).then(userService.handleResponse);
-
+    ).then(handleResponse);
     return res;
   },
 };
