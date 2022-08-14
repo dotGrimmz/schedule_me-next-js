@@ -1,5 +1,5 @@
-import { CreateUser, User } from "../types/user.types";
-import { handleResponse } from "../helpers/utils/handleResponse";
+import {CreateUser, User} from "../types/user.types";
+import {handleResponse} from "../helpers/utils/handleResponse";
 
 const requestOpts = {
   method: "POST",
@@ -12,10 +12,9 @@ export const userService = {
       body: JSON.stringify(user),
     };
 
-    const res = fetch("http://localhost:3000/api/users/register", opts).then(
-      handleResponse
+    return fetch("http://localhost:3000/api/users/register", opts).then(
+        handleResponse
     );
-    return res;
   },
 
   authenticate: (user: CreateUser): Promise<User> => {
@@ -23,10 +22,9 @@ export const userService = {
       ...requestOpts,
       body: JSON.stringify(user),
     };
-    const res = fetch(
-      "http://localhost:3000/api/users/authenticate",
-      opts
+    return fetch(
+        "http://localhost:3000/api/users/authenticate",
+        opts
     ).then(handleResponse);
-    return res;
   },
 };

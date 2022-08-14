@@ -1,5 +1,5 @@
 import { CreateAvailabilityPeriod } from "../types/availability.types";
-import { UserAvailablePeriods } from "../types/user.types";
+import { User, UserAvailablePeriods } from "../types/user.types";
 import { handleResponse } from "../helpers/utils/handleResponse";
 
 const requestOpts = {
@@ -8,15 +8,27 @@ const requestOpts = {
 };
 
 export const periodService = {
-  create: (period: CreateAvailabilityPeriod): Promise<UserAvailablePeriods> => {
+  create: async (
+    period: CreateAvailabilityPeriod
+  ): Promise<UserAvailablePeriods> => {
     const opts = {
       ...requestOpts,
       body: JSON.stringify(period),
     };
-    const res = fetch(
+    return await fetch(
       "http://localhost:3000/api/availablePeriods/createAvailablePeriod",
       opts
     ).then(handleResponse);
-    return res;
+  },
+
+  getUserAvailability: async (id: User["id"]) => {
+    const getOpts = {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    };
+    return await fetch(
+      `http://localhost:3000/api/availablePeriods/getAvailablePeriods?id=${id}`,
+      getOpts
+    ).then(handleResponse);
   },
 };

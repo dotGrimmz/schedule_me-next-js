@@ -20,7 +20,6 @@ export const useModal = () => {
   const handleSelectedTime = (e: React.SyntheticEvent) => {
     const target = e.target as HTMLInputElement;
     const time = target.value;
-    console.log(target.name, time);
     if (!time) return;
     setAvailability({ ...availability, [target.name]: time });
   };

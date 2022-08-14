@@ -3,9 +3,11 @@ import { Availability } from "../../../../types/availability.types";
 import { useAuthContext } from "../../../context/useAuthContext";
 import { getTransformedAvailability } from "../../../utils/getTransformedAvailability";
 import { periodService } from "../../../../service/period.service";
+import { useAvailabilityContext } from "../../../context/useAvailabilityContext";
 
 export const useSchedule = () => {
   const { auth } = useAuthContext();
+  const { setUserAvailabilityPeriods } = useAvailabilityContext();
 
   const [openModal, setOpenModal] = useState(false);
   const [selectedDay, setSelectedDay] = useState(new Date());
@@ -22,18 +24,13 @@ export const useSchedule = () => {
 
   const isValidDay = (day: Date) => {
     const selectedDay = day?.getDay();
-    if (selectedDay === 0 || selectedDay === 6) {
-      return false;
-    }
-    return true;
+    return !(selectedDay === 0 || selectedDay === 6);
   };
 
   const handleNextStep = () => setContinueStep(true);
   const handleBackStep = () => setContinueStep(false);
 
-  //TODO:: Collect User data, Selected day and Hours or selected Day
-
-  const captureAvailablePeriod = (availability: Availability) => {
+  const captureAvailablePeriod = async (availability: Availability) => {
     const availabilityPeriod = getTransformedAvailability({
       selectedDay,
       availability,
@@ -44,7 +41,7 @@ export const useSchedule = () => {
       availablePeriod: availabilityPeriod,
     };
 
-    periodService.create(data);
+    await periodService.create(data).then(setUserAvailabilityPeriods);
   };
 
   return {

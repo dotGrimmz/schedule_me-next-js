@@ -4,13 +4,13 @@ export default function getAvailablePeriods(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { id } = req.body.user;
-  const userAvailablePeriods = availablePeriodsRepo.findById(id);
+  const { id } = req.query;
+  const userAvailablePeriods = availablePeriodsRepo.findById(id as string);
   if (!userAvailablePeriods) {
     return res
       .status(400)
       .send({ message: "Bad Request - User doesn't exist" });
   }
   console.log(userAvailablePeriods);
-  return res.status(201).send(userAvailablePeriods);
+  return res.status(200).send(userAvailablePeriods);
 }

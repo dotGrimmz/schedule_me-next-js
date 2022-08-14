@@ -1,6 +1,5 @@
-import { NextApiResponse } from "next";
 
-export const handleResponse = (res: NextApiResponse) => {
+export const handleResponse = (res: Response) => {
   return res.text().then((text: any) => {
     const data = text && JSON.parse(text);
     if (!res.ok) {

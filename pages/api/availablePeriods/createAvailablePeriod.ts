@@ -6,5 +6,6 @@ export default function createAvailablePeriod(
 ) {
   const { availablePeriod, id } = req.body;
   const userPeriods = availablePeriodsRepo.createPeriod(id, availablePeriod);
+  console.log({ userPeriods });
   return res.status(201).send(userPeriods);
 }

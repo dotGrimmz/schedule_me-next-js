@@ -8,11 +8,10 @@ import { v4 as uuidv4 } from "uuid";
 const USERS_PATH = "data/users.json";
 
 export const usersRepo = {
-  getAllUsers: () => users,
-  getUserById: (id: keyof User) => users.find((user: User) => user.id === id),
+
+  // getUserById: (id: keyof User) => users.find((user: User) => user.id === id),
   findByUserName,
   createUser,
-  updateUser,
 };
 
 function findByUserName(userName: keyof User) {
@@ -26,12 +25,7 @@ function createUser(user: User) {
   return user;
 }
 
-function updateUser(updatedUser: User) {
-  const { id } = updatedUser;
-  const user = users.find((x: User) => x.id === id);
-  Object.assign(user, updatedUser);
-  saveUsers();
-}
+
 
 function saveUsers() {
   fs.writeFileSync(USERS_PATH, JSON.stringify(users, null, 4));

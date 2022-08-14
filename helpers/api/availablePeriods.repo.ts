@@ -9,7 +9,7 @@ export const availablePeriodsRepo = {
   findById: (id: User["id"]) =>
     userAvailablePeriods.find((period) => period.id === id),
   createPeriod,
-  getAllPeriods: () => userAvailablePeriods,
+  getAllAvailability: () => userAvailablePeriods,
 };
 
 function createPeriod(
@@ -17,19 +17,19 @@ function createPeriod(
   period: AvailabilityPeriod
 ): Maybe<UserAvailablePeriods> {
   const userPeriods = availablePeriodsRepo.findById(id);
-  //TODO: use date fns function to check if ranges overlap for error handling;
+
   if (!userPeriods) {
     return initializePeriod(id, period);
   }
+  userPeriods.availablePeriods.push(period);
   saveAvailablePeriods();
   return availablePeriodsRepo.findById(id);
 }
 
-function saveAvailablePeriods() {
-  fs.writeFileSync(
-    AVAILABLE_PERIODS_PATH,
-    JSON.stringify(userAvailablePeriods, null, 4)
-  );
+function saveAvailablePeriods(
+  data: UserAvailablePeriods[] = userAvailablePeriods
+) {
+  fs.writeFileSync(AVAILABLE_PERIODS_PATH, JSON.stringify(data, null, 4));
 }
 
 function initializePeriod(
