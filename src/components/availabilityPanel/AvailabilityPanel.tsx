@@ -35,7 +35,7 @@ const AvailabilityPanel: FC<{
           );
         })}
       </div>
-      <StyledButton>Print to Console</StyledButton>
+      <StyledButton onClick={printToConsole}>Print to Console</StyledButton>
     </UserAvailabilityContainer>
   );
 };
