@@ -8,5 +8,15 @@
         "userName": "Grimmz",
         "password": "ASDF",
         "id": "395ebc4e-621f-48db-9a76-4014565bb99c"
+    },
+    {
+        "userName": "Future",
+        "password": "Future",
+        "id": "eccd1054-9fd8-4f3c-b64c-28d78962eee9"
+    },
+    {
+        "userName": "Smart",
+        "password": "smart",
+        "id": "10d86c1f-6fc7-4470-8dcc-87b6c940d54b"
     }
 ]

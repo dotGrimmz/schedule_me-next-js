@@ -1,4 +1,5 @@
 import { CreateAvailabilityPeriod } from "../types/availability.types";
+import { UserAvailablePeriods } from "../types/user.types";
 
 const requestOpts = {
   method: "POST",
@@ -14,7 +15,7 @@ export const periodService = {
     });
   },
 
-  create: (period: CreateAvailabilityPeriod) => {
+  create: (period: CreateAvailabilityPeriod): Promise<UserAvailablePeriods> => {
     const opts = {
       ...requestOpts,
       body: JSON.stringify(period),

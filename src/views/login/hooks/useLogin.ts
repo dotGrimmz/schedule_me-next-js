@@ -26,8 +26,11 @@ export const useLogin = () => {
   const showLogin = display === "Login";
   const showSignUp = display === "Sign up";
 
-  const submitRegistration = () => {
-    userService.register(credentials);
+  const submitRegistration = async () => {
+    const user = await userService.register(credentials);
+    if (user) {
+      login(user.userName, user.password);
+    }
   };
 
   const handleAuthenticate = () => {

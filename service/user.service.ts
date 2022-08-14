@@ -1,4 +1,4 @@
-import { CreateUser } from "../types/user.types";
+import { CreateUser, User } from "../types/user.types";
 
 const requestOpts = {
   method: "POST",
@@ -12,7 +12,7 @@ export const userService = {
       return data;
     });
   },
-  register: (user: CreateUser) => {
+  register: (user: CreateUser): Promise<User> => {
     const opts = {
       ...requestOpts,
       body: JSON.stringify(user),
@@ -24,7 +24,7 @@ export const userService = {
     return res;
   },
 
-  authenticate: (user: CreateUser) => {
+  authenticate: (user: CreateUser): Promise<User> => {
     const opts = {
       ...requestOpts,
       body: JSON.stringify(user),
