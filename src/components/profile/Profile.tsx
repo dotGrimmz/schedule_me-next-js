@@ -4,6 +4,7 @@ import Image from "next/image";
 import { User } from "../../../types/user.types";
 import Icon from "../../assets/calender.jpeg";
 import { Maybe } from "../../../types/utility.types";
+import { StyledButton } from "../../../styles/global.styles";
 
 const Profile: FC<{ credentials: Maybe<User> }> = ({ credentials }) => {
   return (
@@ -16,9 +17,7 @@ const Profile: FC<{ credentials: Maybe<User> }> = ({ credentials }) => {
       />
       <AvailabilityContainer>
         <div>{credentials?.userName}</div>
-        <button style={{ backgroundColor: "teal", cursor: "pointer" }}>
-          show availability
-        </button>
+        <StyledButton>Show Availability</StyledButton>
       </AvailabilityContainer>
     </ProfileContainer>
   );

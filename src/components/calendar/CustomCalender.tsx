@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import { CalenderContainer } from "./CustomCalender.styles";
+import "react-calendar/dist/Calendar.css";
 import Calender from "react-calendar";
 
 type CustomCalender = {

@@ -1,28 +1,42 @@
 import { useState } from "react";
+import { Availability } from "../../../../types/availability.types";
 
 export const useSchedule = () => {
   const [openModal, setOpenModal] = useState(false);
   const [selectedDay, setSelectedDay] = useState(new Date());
-  const [selectedTime, setSelectedTime] = useState("09:00");
+  const [continueStep, setContinueStep] = useState(false);
+  const [availability, setAvailability] = useState<Availability>({
+    start: "9",
+    end: "",
+  });
 
   const handleModalClose = () => setOpenModal(false);
 
   const handleModalOpen = (day: Date) => {
-    console.log(isValidDay(day));
     if (isValidDay(day)) {
       setOpenModal(true);
-
       setSelectedDay(day);
     }
   };
 
-  const handleSelectedTime = (time: string) => {
-    console.log({ time });
-    if (isValidTime(time)) {
-      setSelectedTime(time);
-    }
+  // This was my original DRY solution..
+  // const handleSelectedTime = (e: React.SyntheticEvent) => {
+  //   const target = e.target as HTMLInputElement;
+  //   const time = target.value;
+  //   setAvailability({ ...availability, [target.name]: time });
+  // };
+
+  const handleStartTime = (e: React.SyntheticEvent) => {
+    const target = e.target as HTMLInputElement;
+    const time = target.value;
+    setAvailability({ ...availability, start: time });
   };
 
+  const handleEndTime = (e: React.SyntheticEvent) => {
+    const target = e.target as HTMLInputElement;
+    const time = target.value;
+    setAvailability({ ...availability, end: time });
+  };
   const isValidDay = (day: Date) => {
     const selectedDay = day?.getDay();
     if (selectedDay === 0 || selectedDay === 6) {
@@ -31,19 +45,20 @@ export const useSchedule = () => {
     return true;
   };
 
-  const isValidTime = (time: any) => {
-    if (time) {
-      return true;
-    }
-    return true;
-  };
+  const handleNextStep = () => setContinueStep(true);
+  const handleBackStep = () => setContinueStep(false);
 
   return {
     selectedDay,
-    selectedTime,
+    setAvailability,
     handleModalOpen,
-    handleSelectedTime,
+    handleEndTime,
     openModal,
     handleModalClose,
+    availability,
+    handleStartTime,
+    continueStep,
+    handleNextStep,
+    handleBackStep,
   };
 };
