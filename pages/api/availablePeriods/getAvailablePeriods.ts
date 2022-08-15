@@ -11,6 +11,5 @@ export default function getAvailablePeriods(
       .status(400)
       .send({ message: "Bad Request - User doesn't exist" });
   }
-  console.log(userAvailablePeriods);
   return res.status(200).send(userAvailablePeriods);
 }

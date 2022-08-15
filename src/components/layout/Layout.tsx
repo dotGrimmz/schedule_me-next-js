@@ -1,10 +1,17 @@
 import React, { FC } from "react";
-import { LayoutContainer } from "./Layout.styles";
+import {
+  LayoutContainer,
+  LetterItem,
+  iterateLetterAnimation,
+  Spacer,
+  TitleContainer,
+} from "./Layout.styles";
 import Login from "../../views/login/Login";
 import Profile from "../../components/profile/Profile";
 import Schedule from "../../views/schedule/Schedule";
 import { useLayout } from "./useLayout";
 import AvailabilityPanel from "../availabilityPanel/AvailabilityPanel";
+import CustomTitle from "../title/CustomTitle";
 
 export const Layout: FC = () => {
   const {
@@ -36,6 +43,7 @@ export const Layout: FC = () => {
           printToConsole={logAvailabilityPeriods}
         />
       )}
+      <CustomTitle />
       <Schedule />
     </LayoutContainer>
   );

@@ -5,7 +5,7 @@ export const ProfileContainer = styled.div`
   outline: 1.5px solid black;
   width: 200px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.19);
-  background-color: white;
+  background: radial-gradient(#ffeece, bisque);
   align-self: flex-start;
   margin-top: 20px;
   margin-left: 20px;

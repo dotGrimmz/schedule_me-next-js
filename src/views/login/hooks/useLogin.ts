@@ -31,7 +31,6 @@ export const useLogin = () => {
     if (user) {
       login(user.userName, user.password);
     }
-    console.log({ user });
   };
 
   const handleAuthenticate = () => {

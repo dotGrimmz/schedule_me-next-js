@@ -14,8 +14,8 @@ export const CustomInput = styled.input`
 
 export const LabelText = styled.p`
   font-size: 14;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  color: green;
+  font-family: Comic Sans MS, Comic Sans, cursive;
+  color: teal;
   padding: 0;
   margin: 0;
 `;

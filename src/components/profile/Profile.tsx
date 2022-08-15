@@ -19,7 +19,7 @@ const Profile: FC<{
         width={30}
       />
       <AvailabilityContainer>
-        <div>{credentials?.userName}</div>
+        <div> {credentials?.userName}</div>
         <StyledButton onClick={toggleAvailability}>
           Show Availability
         </StyledButton>

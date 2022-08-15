@@ -32,4 +32,4 @@ run npm dev
 
 ## Usage
 
-Before creating an availability schedule you must register as a user requiring a user name and password. Once registered you can now create your availability schedule for any week day.
+As is, this app will only run as expected locally in development mode. Before creating an availability schedule you must register as a user requiring a user name and password. Once registered you can now create your availability schedule for any week day.

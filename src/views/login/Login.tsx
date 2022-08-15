@@ -2,13 +2,14 @@ import React from "react";
 import {
   LoginContainer,
   CredentialsContainer,
-  CustomLoginBtn,
   ScheduleImgContainer,
   ScheduleImageComponent,
 } from "./Login.styles";
 import ScheduleImage from "../../assets/schedule.jpg";
 import { useLogin } from "./hooks/useLogin";
 import LoginPanel from "./loginPanel/LoginPanel";
+import { StyledButton } from "../../../styles/global.styles";
+import CustomTitle from "../../components/title/CustomTitle";
 
 const Login = () => {
   const {
@@ -25,7 +26,7 @@ const Login = () => {
   } = useLogin();
   return (
     <LoginContainer>
-      Schedule Me
+      <CustomTitle login />
       {showDefault && (
         <ScheduleImgContainer>
           <ScheduleImageComponent
@@ -46,22 +47,20 @@ const Login = () => {
       <CredentialsContainer>
         {showDefault && (
           <>
-            <CustomLoginBtn onClick={onLoginClick}>Login</CustomLoginBtn>
-            <CustomLoginBtn onClick={onSignUpClick}>Sign Up</CustomLoginBtn>
+            <StyledButton onClick={onLoginClick}>Login</StyledButton>
+            <StyledButton onClick={onSignUpClick}>Sign Up</StyledButton>
           </>
         )}
         {showSignUp && (
           <>
-            <CustomLoginBtn onClick={onReturn}>Return</CustomLoginBtn>
-            <CustomLoginBtn onClick={submitRegistration}>
-              Register
-            </CustomLoginBtn>
+            <StyledButton onClick={onReturn}>Return</StyledButton>
+            <StyledButton onClick={submitRegistration}>Register</StyledButton>
           </>
         )}
         {showLogin && (
           <>
-            <CustomLoginBtn onClick={onReturn}>Return</CustomLoginBtn>
-            <CustomLoginBtn onClick={handleAuthenticate}>Login</CustomLoginBtn>
+            <StyledButton onClick={onReturn}>Return</StyledButton>
+            <StyledButton onClick={handleAuthenticate}>Login</StyledButton>
           </>
         )}
       </CredentialsContainer>
