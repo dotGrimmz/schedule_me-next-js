@@ -1,11 +1,5 @@
 import React, { FC } from "react";
-import {
-  LayoutContainer,
-  LetterItem,
-  iterateLetterAnimation,
-  Spacer,
-  TitleContainer,
-} from "./Layout.styles";
+import { LayoutContainer } from "./Layout.styles";
 import Login from "../../views/login/Login";
 import Profile from "../../components/profile/Profile";
 import Schedule from "../../views/schedule/Schedule";
