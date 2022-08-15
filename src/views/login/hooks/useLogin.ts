@@ -2,11 +2,13 @@ import React, { useState } from "react";
 
 import { userService } from "../../../../service/user.service";
 import { useAuthContext } from "../../../context/useAuthContext";
+import { useSnackbar } from "notistack";
 
 type LoginDisplay = "Login" | "Sign up" | "default";
 
 export const useLogin = () => {
-  const { login } = useAuthContext();
+  const { enqueueSnackbar } = useSnackbar();
+  const { login, auth, loggedIn } = useAuthContext();
   const [credentials, setCredentials] = useState({
     userName: "",
     password: "",
@@ -27,10 +29,15 @@ export const useLogin = () => {
   const showSignUp = display === "Sign up";
 
   const submitRegistration = async () => {
-    const user = await userService.register(credentials);
-    if (user) {
-      login(user.userName, user.password);
-    }
+    await userService
+      .register(credentials)
+      .then((res) => {
+        login(res.userName, res.password);
+        enqueueSnackbar("User Registered", { variant: "success" });
+      })
+      .catch((e) => {
+        enqueueSnackbar(e, { variant: "error" });
+      });
   };
 
   const handleAuthenticate = () => {

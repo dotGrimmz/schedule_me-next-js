@@ -18,5 +18,25 @@
         "userName": "Smart",
         "password": "smart",
         "id": "10d86c1f-6fc7-4470-8dcc-87b6c940d54b"
+    },
+    {
+        "userName": "Brad",
+        "password": "asdf",
+        "id": "e5b8dbac-6cfa-49c4-8c77-d8849fb5f9fd"
+    },
+    {
+        "userName": "Seen",
+        "password": "asdf",
+        "id": "db5a71fb-6ad8-411d-bc18-fdd916f0bbc4"
+    },
+    {
+        "userName": "Sean",
+        "password": "testpassword",
+        "id": "ad51f416-02a5-4b94-89c8-dd38459feb2a"
+    },
+    {
+        "userName": "Jack",
+        "password": "Notjack",
+        "id": "01e68557-b889-42e7-884a-df395ff1ddc8"
     }
 ]

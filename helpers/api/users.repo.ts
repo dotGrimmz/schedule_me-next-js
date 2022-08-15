@@ -8,8 +8,6 @@ import { v4 as uuidv4 } from "uuid";
 const USERS_PATH = "data/users.json";
 
 export const usersRepo = {
-
-  // getUserById: (id: keyof User) => users.find((user: User) => user.id === id),
   findByUserName,
   createUser,
 };
@@ -24,8 +22,6 @@ function createUser(user: User) {
   saveUsers();
   return user;
 }
-
-
 
 function saveUsers() {
   fs.writeFileSync(USERS_PATH, JSON.stringify(users, null, 4));

@@ -2,6 +2,7 @@ import React, { createContext, useState, FC, useMemo, useEffect } from "react";
 import { SetState, Maybe } from "../../types/utility.types";
 import { User } from "../../types/user.types";
 import { userService } from "../../service/user.service";
+import { useSnackbar } from "notistack";
 
 export const AuthContext = createContext<AuthContext | undefined>(undefined);
 
@@ -23,6 +24,8 @@ export const AuthContextProvider: FC<{ children: React.ReactNode }> = ({
   const [loading, setLoading] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
 
+  const { enqueueSnackbar } = useSnackbar();
+
   useEffect(() => {
     setLoggedIn(!!auth?.id);
   }, [auth]);
@@ -31,7 +34,13 @@ export const AuthContextProvider: FC<{ children: React.ReactNode }> = ({
     setLoading(true);
     await userService
       .authenticate({ userName, password })
-      .then(setAuth)
+      .then((res) => {
+        setAuth(res);
+        enqueueSnackbar(`Welcome ${res.userName}`, { variant: "success" });
+      })
+      .catch((e) => {
+        enqueueSnackbar(e, { variant: "error" });
+      })
       .finally(() => setLoading(false));
   };
 

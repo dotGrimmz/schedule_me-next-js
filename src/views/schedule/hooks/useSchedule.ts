@@ -4,11 +4,12 @@ import { useAuthContext } from "../../../context/useAuthContext";
 import { getTransformedAvailability } from "../../../utils/getTransformedAvailability";
 import { periodService } from "../../../../service/period.service";
 import { useAvailabilityContext } from "../../../context/useAvailabilityContext";
+import { useSnackbar } from "notistack";
 
 export const useSchedule = () => {
   const { auth } = useAuthContext();
   const { setUserAvailabilityPeriods } = useAvailabilityContext();
-
+  const { enqueueSnackbar } = useSnackbar();
   const [openModal, setOpenModal] = useState(false);
   const [selectedDay, setSelectedDay] = useState(new Date());
   const [continueStep, setContinueStep] = useState(false);
@@ -19,6 +20,8 @@ export const useSchedule = () => {
     if (isValidDay(day)) {
       setOpenModal(true);
       setSelectedDay(day);
+    } else {
+      enqueueSnackbar("Please Select a Week Day", { variant: "error" });
     }
   };
 
@@ -41,7 +44,15 @@ export const useSchedule = () => {
       availablePeriod: availabilityPeriod,
     };
 
-    await periodService.create(data).then(setUserAvailabilityPeriods);
+    await periodService
+      .create(data)
+      .then(setUserAvailabilityPeriods)
+      .then(() =>
+        enqueueSnackbar("Available Hours Added", { variant: "success" })
+      )
+      .catch((e) => {
+        enqueueSnackbar(e, { variant: "error" });
+      });
   };
 
   return {
