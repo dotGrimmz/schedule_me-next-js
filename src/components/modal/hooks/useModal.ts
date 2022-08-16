@@ -3,12 +3,12 @@ import { getMockHours } from "../../../utils/getMockHours";
 import { getEndTimeOptions } from "../../../utils/getEndTimeOptions";
 import {
   Availability,
-  AvailabilityPeriod,
+  AvailablePeriod,
 } from "../../../../types/availability.types";
 import { useSnackbar } from "notistack";
 import { useAvailabilityContext } from "../../../context/useAvailabilityContext";
 import { getFormattedHour } from "../../../utils/getFormattedHour";
-import { format, areIntervalsOverlapping } from "date-fns";
+import { format, areIntervalsOverlapping, isSameDay, parseISO } from "date-fns";
 
 export const useModal = (selectedDay: Date) => {
   const { enqueueSnackbar } = useSnackbar();
@@ -43,48 +43,52 @@ export const useModal = (selectedDay: Date) => {
     setAvailability({ ...availability, [name]: value });
   };
 
-  //TODO: update Create Avail type to new props from notes
-  // on Create => compute duration with mapped start times
   const isRangeError = () => {
-    // return if user has no periods - continue to create new period
+    let isError = false;
     if (!userAvailabilityPeriods) return;
-    //get all existing periods on the same day
     const existingPeriods = userAvailabilityPeriods.availablePeriods.filter(
-      (period) => period.date === format(selectedDay, "MM/dd/yyyy")
+      (period) => {
+        return isSameDay(selectedDay, new Date(period.date));
+      }
     );
 
-    // extract all existing duration slots into an array
-    // example: [11,12, 13,14]
-    const mockDuration = [
-      [8, 9, 10],
-      [13, 14],
-    ];
+    const availabilityDurations = [] as AvailablePeriod["duration"][];
 
-    // logic:
-    // 1) the start hour cannot exist in any of the exiting duration slots except the end hour,
-    // 2) the end hour cannot be the same as any other end hour or larger
-    const duration = getDuration();
-    const startHour = duration[0];
-    const endHour = duration[duration.length - 1];
-    if (
-      mockDuration[0].slice(0, mockDuration[0].length - 1).includes(startHour)
-    ) {
-      enqueueSnackbar(
-        "Overlapping start times, Please Check your already available time slots",
-        { variant: "error" }
-      );
-    }
-    //an example of the last item in the first mockDuration array
-    // mockDuration[0][mockDuration.length- 1]
-    if (mockDuration[0][mockDuration.length - 1] >= endHour) {
-      enqueueSnackbar(
-        "Overlapping end times, Please Check your already available time slots",
-        { variant: "error" }
-      );
-    }
-    console.log(mockDuration[0][mockDuration.length - 1]);
+    existingPeriods.map((period) => {
+      availabilityDurations.push(period.duration);
+    });
 
-    console.log({ startHour, existingPeriods, endHour });
+    const currentDuration = getDuration();
+    const startHour = currentDuration[0];
+    const endHour = currentDuration[currentDuration.length - 1];
+
+    availabilityDurations.some((durationPeriod) => {
+      if (
+        durationPeriod
+          .slice(0, durationPeriod.length - 1)
+          .includes(String(startHour))
+      ) {
+        isError = true;
+        return enqueueSnackbar(
+          "Overlapping start times, Please Check your already available time slots",
+          { variant: "error" }
+        );
+      }
+
+      if (
+        durationPeriod
+          .slice(0, durationPeriod.length - 1)
+          .includes(String(endHour))
+      ) {
+        isError = true;
+
+        return enqueueSnackbar(
+          "Overlapping start times, Please Check your already available time slots",
+          { variant: "error" }
+        );
+      }
+    });
+    return isError;
   };
 
   const getDuration = () => {
@@ -103,5 +107,12 @@ export const useModal = (selectedDay: Date) => {
     handleSelectedTime(e);
     isRangeError();
   };
-  return { endHours, mockHours, availability, handleSelectedTime, onSubmit };
+  return {
+    endHours,
+    mockHours,
+    availability,
+    handleSelectedTime,
+    onSubmit,
+    isRangeError,
+  };
 };

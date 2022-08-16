@@ -7,7 +7,7 @@ export type Availability = {
 };
 
 export type AvailabilityPeriod = Availability & {
-  date: string | Date;
+  date: Date;
   day: string;
 };
 

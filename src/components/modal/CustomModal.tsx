@@ -35,12 +35,15 @@ const CustomModal: FC<CustomModal> = ({
     mockHours,
     availability,
     handleSelectedTime,
+    isRangeError,
   } = useModal(selectedDay);
 
   const onSubmit = (e: React.SyntheticEvent) => {
     handleSelectedTime(e);
-    captureAvailablePeriod(availability);
-    handleModalClose();
+    if (!isRangeError()) {
+      captureAvailablePeriod(availability);
+      handleModalClose();
+    }
   };
   return (
     <StyledModal open={open} onClose={handleModalClose}>

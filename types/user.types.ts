@@ -1,4 +1,4 @@
-import { AvailabilityPeriod } from "./availability.types";
+import { AvailabilityPeriod, AvailablePeriod } from "./availability.types";
 
 export type User = {
   id: string;
@@ -10,5 +10,5 @@ export type CreateUser = Omit<User, "id">;
 
 export type UserAvailablePeriods = {
   id: User["id"];
-  availablePeriods: AvailabilityPeriod[];
+  availablePeriods: AvailablePeriod[];
 };

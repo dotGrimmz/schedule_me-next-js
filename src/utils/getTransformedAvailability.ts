@@ -1,8 +1,4 @@
-import {
-  Availability,
-  AvailabilityPeriod,
-  AvailablePeriod,
-} from "../../types/availability.types";
+import { Availability, AvailablePeriod } from "../../types/availability.types";
 import format from "date-fns/format";
 import { getFormattedHour } from "./getFormattedHour";
 
