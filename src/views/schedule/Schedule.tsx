@@ -22,6 +22,7 @@ const Schedule = () => {
         selectedDay={selectedDay}
       />
       <CustomModal
+        selectedDay={selectedDay}
         open={openModal}
         handleModalClose={handleModalClose}
         handleBackStep={handleBackStep}

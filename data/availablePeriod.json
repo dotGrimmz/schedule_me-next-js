@@ -25,6 +25,101 @@
                 "date": "08/10/2022",
                 "start": "2",
                 "end": "3"
+            },
+            {
+                "day": "Wednesday",
+                "date": "08/10/2022",
+                "start": "9",
+                "end": "10"
+            },
+            {
+                "day": "Friday",
+                "date": "08/12/2022",
+                "start": "9",
+                "end": "10"
+            },
+            {
+                "day": "Friday",
+                "date": "08/12/2022",
+                "start": "9",
+                "end": "10"
+            },
+            {
+                "day": "Friday",
+                "date": "08/12/2022",
+                "start": "9",
+                "end": "10"
+            },
+            {
+                "day": "Friday",
+                "date": "08/19/2022",
+                "start": "9",
+                "end": "10"
+            },
+            {
+                "day": "Friday",
+                "date": "08/26/2022",
+                "start": "9",
+                "end": "10"
+            },
+            {
+                "day": "Thursday",
+                "date": "08/04/2022",
+                "start": "9",
+                "end": "10"
+            },
+            {
+                "day": "Friday",
+                "date": "08/05/2022",
+                "start": "9",
+                "end": "10"
+            },
+            {
+                "day": "Thursday",
+                "date": "08/11/2022",
+                "start": "9",
+                "end": "10"
+            },
+            {
+                "day": "Thursday",
+                "date": "08/18/2022",
+                "start": "9",
+                "end": "10"
+            },
+            {
+                "day": "Thursday",
+                "date": "08/18/2022",
+                "start": "9",
+                "end": "10"
+            },
+            {
+                "day": "Thursday",
+                "date": "08/18/2022",
+                "start": "9",
+                "end": "10"
+            },
+            {
+                "day": "Thursday",
+                "date": "08/18/2022",
+                "start": "9",
+                "end": "10"
+            },
+            {
+                "day": "Thursday",
+                "date": "08/18/2022",
+                "start": "9",
+                "end": "10"
+            },
+            {
+                "day": "Thursday",
+                "date": "2022-09-29T04:00:00.000Z",
+                "start": "9",
+                "end": "10",
+                "formattedDateStr": "09/29/2022",
+                "duration": [
+                    "9",
+                    "10"
+                ]
             }
         ]
     },

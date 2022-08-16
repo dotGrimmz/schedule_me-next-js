@@ -16,6 +16,7 @@ type CustomModal = {
   continueStep?: boolean;
   handleNextStep: () => void;
   handleBackStep: () => void;
+  selectedDay: Date;
   captureAvailablePeriod: (val: Availability) => void;
 };
 
@@ -26,8 +27,15 @@ const CustomModal: FC<CustomModal> = ({
   handleNextStep,
   handleBackStep,
   captureAvailablePeriod,
+  selectedDay,
 }) => {
-  const { endHours, mockHours, availability, handleSelectedTime } = useModal();
+  const {
+    endHours,
+    // onSubmit,
+    mockHours,
+    availability,
+    handleSelectedTime,
+  } = useModal(selectedDay);
 
   const onSubmit = (e: React.SyntheticEvent) => {
     handleSelectedTime(e);
