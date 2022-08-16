@@ -1,5 +1,8 @@
-import React, { FC } from "react";
-import { AvailabilityPeriod } from "../../../types/availability.types";
+import React, { FC, useId } from "react";
+import {
+  AvailabilityPeriod,
+  AvailablePeriod,
+} from "../../../types/availability.types";
 import {
   UserAvailabilityContainer,
   PeriodContainer,
@@ -9,17 +12,18 @@ import { getMorningPeriod } from "../../utils/getMorningPeriod";
 import { StyledButton } from "../../../styles/global.styles";
 
 const AvailabilityPanel: FC<{
-  periods: AvailabilityPeriod[];
+  periods: AvailablePeriod[];
   printToConsole: () => void;
 }> = ({ periods, printToConsole }) => {
+  const id = useId();
   return (
     <UserAvailabilityContainer>
       <div>
         {periods?.map((period) => {
           return (
-            <PeriodContainer>
+            <PeriodContainer key={id}>
               <LabelContainer>
-                <div>{period.date}</div>
+                <div>{period.formattedDateStr}</div>
                 <div>{period.day}</div>
               </LabelContainer>
               <LabelContainer>

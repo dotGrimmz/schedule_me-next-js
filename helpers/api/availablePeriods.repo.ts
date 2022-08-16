@@ -1,6 +1,9 @@
 import { User, UserAvailablePeriods } from "../../types/user.types";
 import userAvailablePeriods from "../../data/availablePeriod.json";
-import { AvailabilityPeriod } from "../../types/availability.types";
+import {
+  AvailabilityPeriod,
+  AvailablePeriod,
+} from "../../types/availability.types";
 import fs from "fs";
 import { Maybe } from "../../types/utility.types";
 
@@ -14,7 +17,7 @@ export const availablePeriodsRepo = {
 
 function createPeriod(
   id: User["id"],
-  period: AvailabilityPeriod
+  period: AvailablePeriod
 ): Maybe<UserAvailablePeriods> {
   const userPeriods = availablePeriodsRepo.findById(id);
 
@@ -34,7 +37,7 @@ function saveAvailablePeriods(
 
 function initializePeriod(
   id: User["id"],
-  period: AvailabilityPeriod
+  period: AvailablePeriod
 ): UserAvailablePeriods {
   const initialPeriod = { id, availablePeriods: [period] };
   userAvailablePeriods.push(initialPeriod);

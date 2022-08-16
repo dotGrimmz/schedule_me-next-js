@@ -7,11 +7,16 @@ export type Availability = {
 };
 
 export type AvailabilityPeriod = Availability & {
-  date: string;
+  date: Date;
   day: string;
+};
+
+export type AvailablePeriod = AvailabilityPeriod & {
+  duration: string[];
+  formattedDateStr: string;
 };
 
 export type CreateAvailabilityPeriod = {
   id: Maybe<User["id"]>;
-  availablePeriod: AvailabilityPeriod;
+  availablePeriod: AvailablePeriod;
 };
