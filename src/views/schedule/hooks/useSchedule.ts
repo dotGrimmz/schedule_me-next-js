@@ -7,7 +7,7 @@ import { useAvailabilityContext } from "../../../context/useAvailabilityContext"
 import { useSnackbar } from "notistack";
 
 export const useSchedule = () => {
-  const { auth } = useAuthContext();
+  const { auth, logOutUser } = useAuthContext();
   const { setUserAvailabilityPeriods } = useAvailabilityContext();
   const { enqueueSnackbar } = useSnackbar();
   const [openModal, setOpenModal] = useState(false);
@@ -63,6 +63,7 @@ export const useSchedule = () => {
     continueStep,
     handleNextStep,
     handleBackStep,
+    logOutUser,
     captureAvailablePeriod,
   };
 };

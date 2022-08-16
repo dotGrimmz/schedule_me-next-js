@@ -3,6 +3,7 @@ import { useSchedule } from "./hooks/useSchedule";
 import CustomCalender from "../../components/calendar/CustomCalender";
 import { ScheduleContainer } from "./Schedule.styles";
 import CustomModal from "../../components/modal/CustomModal";
+import { StyledButton } from "../../../styles/global.styles";
 
 const Schedule = () => {
   const {

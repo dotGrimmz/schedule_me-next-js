@@ -44,6 +44,10 @@ export const AuthContextProvider: FC<{ children: React.ReactNode }> = ({
       .finally(() => setLoading(false));
   };
 
+  const logOutUser = () => {
+    setAuth(undefined);
+  };
+
   const context = useMemo(
     () => ({
       loading,
@@ -53,6 +57,7 @@ export const AuthContextProvider: FC<{ children: React.ReactNode }> = ({
       setAuth,
       loggedIn,
       setLoggedIn,
+      logOutUser,
     }),
     [loading, auth, loggedIn]
   );

@@ -5,7 +5,7 @@ import { useSnackbar } from "notistack";
 import _ from "lodash";
 
 export const useLayout = () => {
-  const { loggedIn, auth } = useAuthContext();
+  const { loggedIn, auth, logOutUser } = useAuthContext();
   const { userAvailabilityPeriods } = useAvailabilityContext();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -31,5 +31,6 @@ export const useLayout = () => {
     userAvailabilityPeriods,
     showUserAvailability,
     logAvailabilityPeriods,
+    logOutUser,
   };
 };

@@ -3,6 +3,7 @@ import { useAuthContext } from "./useAuthContext";
 import { periodService } from "../../service/period.service";
 import { UserAvailablePeriods } from "../../types/user.types";
 import { Maybe, SetState } from "../../types/utility.types";
+import { AvailablePeriod } from "../../types/availability.types";
 
 export const AvailabilityContext = createContext<
   AvailabilityContext | undefined
@@ -28,12 +29,21 @@ export const AvailabilityContextProvider: FC<{ children: React.ReactNode }> = ({
       if (!auth?.id) {
         return;
       }
-      await periodService
-        .getUserAvailability(auth.id)
-        .then(setUserAvailabilityPeriods);
+      await periodService.getUserAvailability(auth.id).then((res) => {
+        setUserAvailabilityPeriods(sortByDay(res));
+      });
     };
     getUserAvailability();
   }, [auth]);
+
+  const sortByDay = (res: UserPeriods): UserPeriods => {
+    if (!res) return;
+    res?.availablePeriods.sort(
+      (a: AvailablePeriod, b: AvailablePeriod) =>
+        new Date(a.date).getTime() - new Date(b.date).getTime()
+    );
+    return res;
+  };
 
   const context = useMemo(
     () => ({

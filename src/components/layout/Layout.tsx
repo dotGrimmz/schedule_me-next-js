@@ -1,5 +1,9 @@
 import React, { FC } from "react";
-import { LayoutContainer } from "./Layout.styles";
+import {
+  LayoutContainer,
+  LogOutButton,
+  OptionsContainer,
+} from "./Layout.styles";
 import Login from "../../views/login/Login";
 import Profile from "../../components/profile/Profile";
 import Schedule from "../../views/schedule/Schedule";
@@ -15,6 +19,7 @@ export const Layout: FC = () => {
     showUserAvailability,
     userAvailabilityPeriods,
     logAvailabilityPeriods,
+    logOutUser,
   } = useLayout();
 
   if (!loggedIn) {
@@ -27,10 +32,14 @@ export const Layout: FC = () => {
 
   return (
     <LayoutContainer>
-      <Profile
-        credentials={auth}
-        toggleAvailability={toggleAvailabilityDisplay}
-      />
+      <OptionsContainer>
+        <Profile
+          credentials={auth}
+          toggleAvailability={toggleAvailabilityDisplay}
+        />
+        <LogOutButton onClick={logOutUser}>Log Out </LogOutButton>
+      </OptionsContainer>
+
       {showUserAvailability && userAvailabilityPeriods && (
         <AvailabilityPanel
           periods={userAvailabilityPeriods?.availablePeriods}

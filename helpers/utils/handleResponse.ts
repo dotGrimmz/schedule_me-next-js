@@ -1,4 +1,3 @@
-
 export const handleResponse = (res: Response) => {
   return res.text().then((text: any) => {
     const data = text && JSON.parse(text);

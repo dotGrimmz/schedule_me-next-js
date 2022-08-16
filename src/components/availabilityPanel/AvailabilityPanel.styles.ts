@@ -56,3 +56,10 @@ export const LabelContainer = styled.div`
   font-size: 12px;
   text-align: center;
 `;
+
+export const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const SymantecDiv = styled.div``;
