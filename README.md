@@ -9,7 +9,7 @@ Schedule Me is an app that allows a user to customize their set their available 
 In your terminal run these commands in this order
 
 ```bash
-run git clone https://github.com/dotGrimmz/nest-simple-api.git
+run git clone https://github.com/dotGrimmz/schedule_me-next-js.git
 ```
 
 Navigate into the project folder
